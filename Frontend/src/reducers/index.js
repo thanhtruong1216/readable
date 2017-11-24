@@ -1,11 +1,14 @@
 import * as Actions from '../actions/index';
 
-const appReducer = (state = [], action) => {
-	switch(action.type) {
-		// case Actions.ADD_POST:
-		// 	return state.push(object => object.author,object.body);
-		// case Actions.ADD_COMMENT:
-		// 	return state.push(object => object.author,object.body);
+const appReducer = (state = {posts: [], comments: [] }, action) => {
+	const { type, ...object } = action;
+	switch(type) {
+		case Actions.ADD_POST:
+			state.posts.push(object);
+			return state;
+		case Actions.ADD_COMMENT:
+			state.comments.push(object);
+			return state;
 		// case Actions.USER_COMMENT_POST:
 		// 	return state.push(object => object.author,object.body);
 		// case Actions.ANOTHER_USER_COMMENT_POST:
