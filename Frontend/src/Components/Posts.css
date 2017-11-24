@@ -1,0 +1,53 @@
+input {
+	border-top: none;
+	border-right: none;
+	border-left: none;
+	border-bottom: 1px solid brown;
+	margin: 20px;
+}
+input:focus, textarea:focus {
+	outline: none;
+}
+button {
+	width: 80px;
+	height: 30px;
+	background-color: brown;
+	border: none;
+	color: white;
+	border-radius: 3px;
+}
+button:focus {
+	outline: none;
+}
+.main {
+	width: 800px;
+}
+.posts-container {
+	padding-left: 20px;
+	margin-bottom: 20px;
+}
+textarea {
+	position: relative;
+  top: 4px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 1px solid brown;
+  margin-right: 20px;
+  height: auto;
+  width: 360px;
+}
+.title-author-container {
+	display: flex;
+	justify-content: space-between;
+	line-height: 20px;
+	border-bottom: 1px solid brown;
+	margin-bottom: 10px;
+}
+textarea::placeholder {
+	position: relative;
+	top: 14px;
+}
+h3 {
+	color: brown;
+}
