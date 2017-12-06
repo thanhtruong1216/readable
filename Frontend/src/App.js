@@ -4,6 +4,7 @@ import Categories from './Components/Categories';
 import Posts from './Components/Posts';
 import Comments from './Components/Comments';
 import * as PostsAPI from './APIS/PostsAPI';
+import { fetchPost } from  './actions';
 
 class App extends Component {
   state = {
@@ -11,9 +12,12 @@ class App extends Component {
     comments: []
   }
   componentDidMount() {
-    PostsAPI.getAll().then(posts => {
-      this.setState({posts})
-    })
+    const { store } = this.props;
+    PostsAPI.getAll().
+      then(response => response.json()).
+      then(posts => {
+        store.dispatch(fetchPost({posts}));
+      })
   }
   render() {
     const { store } = this.props;

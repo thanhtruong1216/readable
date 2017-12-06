@@ -15,6 +15,8 @@ const comments = (state = [], action) => {
 const posts = (state = [], action) => {
 	const {type, ...object} = action;
 	switch(type) {
+		case Actions.FETCH_POST:
+			return object.posts;
 		case Actions.ADD_POST:
 			state.push(object);
 			return state

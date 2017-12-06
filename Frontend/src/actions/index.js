@@ -1,3 +1,4 @@
+export const FETCH_POST = 'FETCH_POST';
 export const ADD_POST = 'ADD_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
 
@@ -12,6 +13,13 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 
 // export const DELETE_POST = 'DELETE_POST';
 // export const DELETE_COMMENT = 'EDIT_COMMENT';
+
+export function fetchPost({ posts }) {
+	return {
+		type: FETCH_POST,
+		posts
+	}
+}
 
 export function addPost({ title,body,author }) {
 	return {
