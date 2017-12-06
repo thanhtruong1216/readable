@@ -13,13 +13,12 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 // export const DELETE_POST = 'DELETE_POST';
 // export const DELETE_COMMENT = 'EDIT_COMMENT';
 
-export function addPost({ title,body,author,category }) {
+export function addPost({ title,body,author }) {
 	return {
 		type: ADD_POST,
 		title,
 		body,
-		author,
-		category
+		author
 	}
 }
 export function addComment({ title, body,author }) {
