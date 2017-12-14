@@ -13,7 +13,7 @@ class Posts extends Component {
 	componentDidMount() {
 		const { store } = this.props;
 		store.subscribe(() => {
-			const { posts } = this.props.store.getState()
+			const { posts } = this.props.store.getState();
 			this.setState({posts});
 		})
 	}
@@ -32,6 +32,7 @@ class Posts extends Component {
 								<div className='author'>{post.author}</div>
 							</div>
 							<div>{post.body}</div>
+							<div>{post.category}</div>
 						</div>
 						<CreateComment store={store}/>
 						<Comments store={store} />

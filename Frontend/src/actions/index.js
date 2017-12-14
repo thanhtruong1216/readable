@@ -1,6 +1,5 @@
 export const FETCH_POST = 'FETCH_POST';
 export const ADD_POST = 'ADD_POST';
-export const ADD_COMMENT = 'ADD_COMMENT';
 
 // export const USER_COMMENT_POST = 'USER_COMMENT_POST';
 // export const ANOTHER_USER_COMMENT_POST = 'ANOTHER_USER_COMMENT_POST';
@@ -21,22 +20,24 @@ export function fetchPost({ posts }) {
 	}
 }
 
-export function addPost({ title,body,author }) {
+export function addPost({ title,body,author,category }) {
 	return {
 		type: ADD_POST,
 		title,
 		body,
-		author
+		author,
+		category
 	}
 }
-export function addComment({ title, body,author }) {
-	return {
-		type: ADD_COMMENT,
-		title,
-		body,
-		author
-	}
-}
+
+// export function addComment({ title, body,author }) {
+// 	return {
+// 		type: ADD_COMMENT,
+// 		title,
+// 		body,
+// 		author
+// 	}
+// }
 // export function userCommentPost({ body, author }) {
 // 	type: USER_COMMENT_POST,
 // 	body,

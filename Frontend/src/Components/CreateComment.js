@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
-import { addComment } from '../actions';
+// import { addComment } from '../actions';
 
 class CreateComment extends Component {
 	state = {
 		showCreateComment: false
 	}
 
-	submitComment = () => {
-		this.props.store.dispatch(addComment({
-			title: this.title.value,
-			author: this.author.value,
-			body: this.body.value
-		}))
-		this.title.value = ''
-		this.author.value = ''
-		this.body.value = ''
-	}
+	// submitComment = () => {
+	// 	this.props.store.dispatch(addComment({
+	// 		title: this.title.value,
+	// 		author: this.author.value,
+	// 		body: this.body.value
+	// 	}))
+	// 	this.title.value = ''
+	// 	this.author.value = ''
+	// 	this.body.value = ''
+	// }
 
-	createComment = () => {
-		this.setState({
-			showCreateComment: !this.state.showCreateComment
-		})
-	}
+	// createComment = () => {
+	// 	this.setState({
+	// 		showCreateComment: !this.state.showCreateComment
+	// 	})
+	// }
 	
 	render() {
 		let createCommentForm = null;

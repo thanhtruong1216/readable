@@ -13,11 +13,9 @@ class App extends Component {
   }
   componentDidMount() {
     const { store } = this.props;
-    PostsAPI.getAll().
-      then(response => response.json()).
-      then(posts => {
-        store.dispatch(fetchPost({posts}));
-      })
+    PostsAPI.getAll().then(response => response.json()).then(posts => {
+      store.dispatch(fetchPost({posts}));
+    })
   }
   render() {
     const { store } = this.props;

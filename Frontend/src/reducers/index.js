@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux';
 import * as Actions from '../actions/index';
 
-const comments = (state = [], action) => {
-	const {type, ...object} = action;
-	switch(action.type) {
-		case Actions.ADD_COMMENT:
-			state.push(object)
-			return state;
-		default:
-			return state;
-	}
-}
+// const comments = (state = [], action) => {
+// 	const {type, ...object} = action;
+// 	switch(action.type) {
+// 		case Actions.ADD_COMMENT:
+// 			state.push(object)
+// 			return state;
+// 		default:
+// 			return state;
+// 	}
+// }
 
 const posts = (state = [], action) => {
 	const {type, ...object} = action;
@@ -26,6 +26,5 @@ const posts = (state = [], action) => {
 }
 
 export default combineReducers({
-  comments,
   posts
 });

@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const api = "http://local.dev:3001";
 let token = 'sometoken';
 
@@ -8,12 +10,13 @@ export const createPost = (post) =>
       'Content-Type': 'application/json',
       'Authorization': token
     },
-    mode: 'cors',
     method: 'POST', 
+    mode: 'cors',
     body: JSON.stringify(post)
   });
 
-export const getAll = (posts) => 
+
+export const getAll = () => 
 fetch(`${api}/posts`, {
   headers: {
     'Accept': 'application/json',
@@ -21,6 +24,6 @@ fetch(`${api}/posts`, {
     'Authorization': token
   },
   mode: 'cors',
-  method: 'GET', 
-  body: JSON.stringify(posts)
+  method: 'GET'
 })
+

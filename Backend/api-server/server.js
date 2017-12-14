@@ -12,8 +12,9 @@ const app = express()
 
 app.use(express.static('public'))
 app.use(cors({
-  origin: 'http://local.dev:3000',
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  optionsSuccessStatus: 200,
 }))
 
 
