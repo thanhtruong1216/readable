@@ -4,6 +4,10 @@ import CreateComment from './CreateComment';
 import Comments from './Comments';
 import './Posts.css';
 import CreatePost from './CreatePost';
+import * as PostAPI from '../APIS/PostsAPI';
+import { deletePost } from '../actions';
+import { editPost } from '../actions';
+import Post from './Post';
 
 class Posts extends Component {
 	state = {
@@ -17,31 +21,20 @@ class Posts extends Component {
 			this.setState({posts});
 		})
 	}
-
+	
 	render() {
 		const { posts } = this.state;
 		const { store } = this.props;
-		return(
-			<div className="main">
-				<CreatePost store={store}/>
-					{posts && posts.map((post, index) => (
-					<div key={index}>
-						<div className="posts-container" >
-							<div className="title-author-container">
-								<div className='title'>{post.title}</div>
-								<div className='author'>{post.author}</div>
-							</div>
-							<div>{post.body}</div>
-							<div>{post.category}</div>
-						</div>
-						<CreateComment store={store}/>
-						<Comments store={store} />
-					</div>
-				))}
-			</div>
-		);
+			return(
+				<div className="main">
+					<CreatePost store={store}/>
+						{posts && posts.map((post, index) => (
+							<Post xpost={post} key={index} store={store} />
+					))}
+				</div>
+			);
+		}
 	}
-}
 Posts.propTypes = {
 	store: PropTypes.object.isRequired,
 	// id: PropTypes.string.isRequired,

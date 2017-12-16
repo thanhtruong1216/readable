@@ -4,7 +4,7 @@ import Proptypes from 'prop-types';
 class Categories extends Component {
 	// state = {
 	// 	categories: null
-	// }
+	// // }
 	// componentDidMount() {
 	// 	fetch('http://localhost:3001/categories', { headers: { 'Authorization': 'whatever-you-want' }})
 	// 	.then(results => results.json())

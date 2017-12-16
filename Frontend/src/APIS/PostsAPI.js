@@ -16,14 +16,40 @@ export const createPost = (post) =>
   });
 
 
-export const getAll = () => 
-fetch(`${api}/posts`, {
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': token
-  },
-  mode: 'cors',
-  method: 'GET'
-})
+export const getAll = () => {
+  return fetch(`${api}/posts`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': token
+    },
+    mode: 'cors',
+    method: 'GET'
+  })
+}
 
+
+export const removePost = (post) => {
+  return fetch(`${api}/posts/${post.id}`, { 
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': token
+    },
+    method: 'DELETE', 
+    mode: 'cors'
+  });
+}
+
+export const editPost = (post) => {
+  return fetch(`${api}/posts/${post.id}`, { 
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': token
+    },
+    method: 'PUT', 
+    mode: 'cors',
+    body: JSON.stringify(post)
+  });
+}

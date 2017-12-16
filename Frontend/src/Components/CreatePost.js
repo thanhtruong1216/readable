@@ -25,7 +25,8 @@ class CreatePost extends Component {
 			title: this.title.value,
 			author: this.author.value,
 			body: this.body.value,
-			category: this.category.value
+			category: this.category.value,
+			timestamp: Date.now()
 		};
 
 		PostAPI.createPost(post).then((response) => {
