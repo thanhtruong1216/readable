@@ -1,35 +1,29 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CreateComment from './CreateComment';
+import Comment from './Comment';
 
 class Comments extends Component {
-	state = {
-		comments: null
-	}
-
-	componentDidMount() {
-		const { store }  = this.props;
-		store.subscribe(() => {
-			this.setState({comments: store.getState().comments})
-		})
-	}
-
 	render() {
-		const { comments } = this.state;
+		const { postId, comments, comment, posts } = this.props;
+		console.log("Comments")
 		return(
 			<div>
-				{comments && comments.map((comment, index) => {
-					return(
-						<div key={index}>
-							<div>{comment.author}</div>
-							<div>{comment.body}</div>
-						</div>
-					)
-				})}
+				{ postId[comments] && postId[comments].map((comment, index) => <Comment key={index} comment={ postId[comments].comment }/> )}
 			</div>
 		);
 	}
 }
+const mapStateToProps = state => {
+  return {
+    comments: state.comments
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {}
+}
+
 Comments.propTypes = {
 		store: PropTypes.object.isRequired,
 // 	id: PropTypes.string.isRequired,

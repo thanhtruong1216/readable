@@ -1,0 +1,14 @@
+select {
+  margin-bottom: 20px;
+  margin-left: 20px;
+  width: 150px;
+}
+label {
+  width: 70px;
+  display: inline-block;
+}
+input {
+  width: 200px;
+  height: auto;
+  word-wrap: break-word;
+}

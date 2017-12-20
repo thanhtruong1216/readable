@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
-import EditPost from './EditPost';
-import * as PostAPI from '../APIS/PostsAPI';
-import { deletePost } from '../actions';
+import { connect } from 'react-redux';
+import SaveEditPost from './SaveEditPost';
+import * as PostsAPI from '../APIS/PostsAPI';
+import { deletePost, fetchComments } from '../actions';
+import Comments from './Comments';
+
 class Post extends Component {
   state = {
     editPost: false
   }
 
-  removePost = (post) => {
-    PostAPI.removePost(post).then((response) => {
-      this.props.store.dispatch(deletePost(post))
-    });
+  componentDidMount() {
+    const { fetchCommentsHandler, post } = this.props;
+    PostsAPI.getAllComments(post).then(response => response.json()).then(comments => {
+      fetchCommentsHandler({comments, postId: post.id});
+    })
   }
 
   editPost = () => {
@@ -19,16 +23,18 @@ class Post extends Component {
     })
   }
 
-  stopEditPost = () => {
-    this.setState({
+  removePost = (post) => {
+    const { deletePostHandler } = this.props;
+    PostsAPI.removePost(post).then((response) => { deletePostHandler(post) });
+  }
+
+  stopEditPost = () => { this.setState({
       editPost: false
     })
   }
 
   render() {
-    const post = this.props.xpost;
-    const { store } = this.props;
-
+    const { post, comment, comments, postId } = this.props;
     if(!this.state.editPost) {
       return(
         <div>
@@ -37,20 +43,42 @@ class Post extends Component {
               <div className='title'><b>Title: </b>{post.title}</div>
               <div className='author'><b>Author: </b>{post.author}</div>
             </div>
-            <div><b>Body: </b>{post.body}</div>
-            <div><b>Category: </b>{post.category}</div>
-            <div><b>Timestamp: </b>{(new Date(post.timestamp)).toString()}</div>
-            <div><b>Vote score: </b>Undefined</div>
+            <div>Body: {post.body}</div>
+            <div>Category: {post.category}</div>
+            <div>Timestamp: {(new Date(post.timestamp)).toString()}</div>
+            <div>Vote score: {post.voteScore}</div>
           </div>
           <button onClick={() => this.removePost(post)}>Delete post</button>
           <button onClick={() => this.editPost()}>Edit post</button>
-        </div>
+          <Comments comment={comment} postId={post.id}/>
+        </div>  
       );
     } else {
       return(
-        <EditPost post={post} store={store} toggleEdit={this.stopEditPost} />
+        <SaveEditPost post={post} toggleEdit={this.stopEditPost} />
       );
     } 
   }
 }
-export default Post;
+
+const mapStateToProps = state => {
+  return {
+    posts: (state) => state.posts
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    deletePostHandler: (post) => {
+      dispatch(deletePost(post))
+    },
+    fetchCommentsHandler: (comments) => {
+      dispatch(fetchComments(comments))
+    }
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Post);

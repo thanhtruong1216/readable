@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+// import { connect } from 'react-redux';
 import CreateComment from './CreateComment';
 import Comments from './Comments';
 import './Posts.css';
@@ -9,34 +10,18 @@ import { deletePost } from '../actions';
 import { editPost } from '../actions';
 import Post from './Post';
 
-class Posts extends Component {
-	state = {
-		posts: null
-	}
-
-	componentDidMount() {
-		const { store } = this.props;
-		store.subscribe(() => {
-			const { posts } = this.props.store.getState();
-			this.setState({posts});
-		})
-	}
-	
+class Posts extends Component {	
 	render() {
-		const { posts } = this.state;
-		const { store } = this.props;
-			return(
-				<div className="main">
-					<CreatePost store={store}/>
-						{posts && posts.map((post, index) => (
-							<Post xpost={post} key={index} store={store} />
-					))}
-				</div>
-			);
-		}
+		const { posts } = this.props;
+		return(
+			<div className="main">
+				{posts.map((post, index) => <Post post={post} key={index} />)}
+			</div>
+		);
 	}
+}
+
 Posts.propTypes = {
-	store: PropTypes.object.isRequired,
 	// id: PropTypes.string.isRequired,
 	// timestamp: PropTypes.number.isRequired,
 	// title: PropTypes.string.isRequired,
@@ -46,4 +31,5 @@ Posts.propTypes = {
 	// voteScore: PropTypes.number.isRequired,
 	// deleted: PropTypes.string.isRequired
 }
-export default Posts;
+
+export default Posts
