@@ -4,6 +4,9 @@ export const DELETE_POST = 'DELETE_POST';
 export const EDIT_POST = 'EDIT_POST'
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const FETCH_COMMENTS = 'FETCH_COMMENTS';
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const REMOVE_COMMENT = 'REMOVE_COMMENT';
+export const EDIT_COMMENT = 'EDIT_COMMENT';
 
 export function fetchCategories({ categories }) {
 	return {
@@ -44,6 +47,25 @@ export function fetchComments({ comments, postId }) {
 		type: FETCH_COMMENTS,
 		comments,
 		postId
+	}
+}
+
+export function addComment({comment}) {
+	return {
+		type: ADD_COMMENT,
+		comment
+	}
+}
+export function deleteComment({comment}) {
+	return {
+		type: REMOVE_COMMENT,
+		comment
+	}
+}
+export function editComment({comment}) {
+	return {
+		type: EDIT_COMMENT, 
+		...comment
 	}
 }
 

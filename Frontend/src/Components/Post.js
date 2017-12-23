@@ -2,18 +2,34 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SaveEditPost from './SaveEditPost';
 import * as PostsAPI from '../APIS/PostsAPI';
+import * as CommentsAPI from '../APIS/CommentsAPI';
 import { deletePost, fetchComments } from '../actions';
 import Comments from './Comments';
+import CreateComment from './CreateComment';
 
 class Post extends Component {
   state = {
-    editPost: false
+    editPost: false,
+    openCommentForm: false
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      comments: props.comments || {}
+    }
+  }
+
+  componentWillReceiveProps({ comments }) {
+    this.setState({comments});
   }
 
   componentDidMount() {
     const { fetchCommentsHandler, post } = this.props;
-    PostsAPI.getAllComments(post).then(response => response.json()).then(comments => {
-      fetchCommentsHandler({comments, postId: post.id});
+    CommentsAPI.getAllComments(post)
+      .then(response => response.json())
+      .then(comments => {
+        fetchCommentsHandler({comments, postId: post.id});
     })
   }
 
@@ -34,8 +50,9 @@ class Post extends Component {
   }
 
   render() {
-    const { post, comment, comments, postId } = this.props;
-    if(!this.state.editPost) {
+    const { post, comment, postId } = this.props;
+    const { comments } = this.state;
+    if(!this.state.editPost) { 
       return(
         <div>
           <div className="posts-container" >
@@ -50,7 +67,11 @@ class Post extends Component {
           </div>
           <button onClick={() => this.removePost(post)}>Delete post</button>
           <button onClick={() => this.editPost()}>Edit post</button>
-          <Comments comment={comment} postId={post.id}/>
+          <div className="comment-container">
+            <CreateComment comment={comment} post={post}/>
+            <h2>Comments</h2>
+            <Comments comments={comments} postId={post.id} />
+          </div>
         </div>  
       );
     } else {
@@ -63,7 +84,8 @@ class Post extends Component {
 
 const mapStateToProps = state => {
   return {
-    posts: (state) => state.posts
+    posts: (state) => state.posts,
+    comments: state.comments
   }
 }
 

@@ -20,7 +20,9 @@ class FormCreatePost extends Component {
       timestamp: Date.now()
     };
 
-    PostAPI.createPost(post).then(response => response.json()).then(json => {addNewPost(post)});
+    PostAPI.createPost(post)
+      .then(response => response.json())
+      .then(json => {addNewPost(post)});
 
     this.title.value = ''
     this.author.value = ''
@@ -44,7 +46,7 @@ class FormCreatePost extends Component {
           <textarea
             type="text"
             placeholder="Author"
-            ref={(textarea) => this.author = textarea}>
+            ref={ (textarea) => this.author = textarea }>
           </textarea>
         </div>
         <div>
@@ -52,19 +54,19 @@ class FormCreatePost extends Component {
           <textarea
             type="text"
             placeholder="Post content"
-            ref={(textarea) => this.body = textarea}>
+            ref={ (textarea) => this.body = textarea }>
           </textarea>
         </div>
 
         <div>
           <label>Category</label>
-          <select ref={(select) => this.category = select}>
+          <select ref={ (select) => this.category = select }>
             <option value="react">React</option>
             <option value="redux">Redux</option>
             <option value="udacity">Udacity</option>
           </select>
         </div>
-        <button onClick={this.submitPost}>Submit</button>
+        <button onClick={ this.submitPost }>Submit</button>
       </form>
     );
   }

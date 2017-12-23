@@ -3,6 +3,7 @@ import './App.css';
 import Categories from './Components/Categories';
 import Posts from './Components/Posts';
 import * as PostsAPI from './APIS/PostsAPI';
+import * as CategoriesAPI from './APIS/CategoriesAPI';
 import { fetchPost } from  './actions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -17,7 +18,7 @@ class App extends Component {
       fetchPostHandler(posts);
     })
 
-    PostsAPI.getAllCategories().then(response => response.json()).then(json => {
+    CategoriesAPI.getAllCategories().then(response => response.json()).then(json => {
       fetchCategoriesHandler(json.categories);
     })
   }

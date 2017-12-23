@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Proptypes from 'prop-types';
 import { connect } from 'react-redux';
 import Posts from './Posts';
-import Comments from './Comments';
+import './category.css';
 
 class Category extends Component {
   constructor(props) {
@@ -21,9 +21,10 @@ class Category extends Component {
 		const { posts } = this.state;
 		const categoryPosts = posts.filter(post => post.category === category.name);
 		return(
-			<div>
-				<h1>{category.name.toUpperCase()}</h1>
-				<Posts posts={categoryPosts} />
+			<div className="category-container">
+				<h1>{ category.name.toUpperCase() } CATEGORY</h1>
+        <h2>Posts</h2>
+				<Posts posts={ categoryPosts } />
 			</div>
 		);
 	}

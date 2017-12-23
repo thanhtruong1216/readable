@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CreateComment from './CreateComment';
 import Comment from './Comment';
 
 class Comments extends Component {
 	render() {
-		const { postId, comments, comment, posts } = this.props;
-		console.log("Comments")
+		const { postId, comments, post} = this.props;
+
+    debugger
 		return(
 			<div>
-				{ postId[comments] && postId[comments].map((comment, index) => <Comment key={index} comment={ postId[comments].comment }/> )}
+				{ comments[postId] && comments[postId].map((comment, index) => <Comment key={index} comment={ comment }/> )}
 			</div>
 		);
 	}

@@ -29,11 +29,31 @@ const posts = ( state = [], action ) => {
 
 const comments = ( state = {}, action ) => {
 	const { type, comments, ...object } = action;
+	let postComments;
 	switch(type) {
 		case Actions.FETCH_COMMENTS:
 			return {
 				...state, 
 				[object.postId]: comments
+			}
+		case Actions.ADD_COMMENT:
+			return {
+				...state,
+				[action.comment.parentId]: [
+					...(state[action.comment.parentId] || []),
+					action.comment
+				]
+			}
+		case Actions.REMOVE_COMMENT:
+			return {
+				...state,
+				[action.comment.parentId]: state[action.comment.parentId].filter((c) => c.id != action.comment.id)
+			}
+		case Actions.EDIT_COMMENT:
+			postComments = state[action.comment.parentId];
+			return{
+				...state,
+				[action.comment.parentId]: postComments.map((c) => c.id === action.comment.id ? action.comment: c)
 			}
 		default:
 			return state;

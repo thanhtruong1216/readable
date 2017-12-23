@@ -9,28 +9,28 @@ import FormCreatePost from './FormCreatePost';
 
 class CreatePost extends Component {
 	state = {
-		showCreatePost: false
+		openCreatePostForm: false
 	}
 
 	createPost = () => {
-		const { showCreatePost } = this.state;
+		const { openCreatePostForm } = this.state;
 		this.setState({
-			showCreatePost: !showCreatePost
+			openCreatePostForm: !this.state.openCreatePostForm
 		})
 	}
 
 	render() {
 		const { store } = this.props;
 		let createPostForm = null;
-		let buttonCreatePostText= 'Create post';
-		if(this.state.showCreatePost) {
-			createPostForm = <FormCreatePost store={store}/>
-			buttonCreatePostText = 'Cancel'
+		let createPostButtonText= 'Create post';
+		if(this.state.openCreatePostForm) {
+			createPostForm = <FormCreatePost/>
+			createPostButtonText = 'Discard'
 		}
 		return(
 			<div>
-				<button onClick={this.createPost}>{buttonCreatePostText}</button>
-				<div>{createPostForm}</div>
+				<button onClick={this.createPost}>{ createPostButtonText }</button>
+				<div>{ createPostForm }</div>
 			</div>
 		)
 	}

@@ -1,22 +1,8 @@
-
 const api = "http://local.dev:3001";
 let token = 'sometoken';
 
-export const createPost = (post) => {
-  return fetch(`${api}/posts`, { 
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': token
-    },
-    method: 'POST', 
-    mode: 'cors',
-    body: JSON.stringify(post)
-  });
-}
-  
-export const getAll = () => {
-  return fetch(`${api}/posts`, {
+export const getAllComments = (post) => {
+  return fetch(`${api}/posts/${post.id}/comments`, {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -27,8 +13,20 @@ export const getAll = () => {
   })
 }
 
-export const removePost = (post) => {
-  return fetch(`${api}/posts/${post.id}`, { 
+export const createComment = (comment) => {
+  return fetch(`${api}/comments`, { 
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': token
+    },
+    method: 'POST', 
+    mode: 'cors',
+    body: JSON.stringify(comment)
+  });
+}
+export const removeComment = (comment) => {
+  return fetch(`${api}/comments/${comment.id}`, { 
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -38,9 +36,8 @@ export const removePost = (post) => {
     mode: 'cors'
   });
 }
-
-export const editPost = (post) => {
-  return fetch(`${api}/posts/${post.id}`, { 
+export const editComment = (comment) => {
+  return fetch(`${api}/comments/${comment.id}`, { 
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -48,9 +45,7 @@ export const editPost = (post) => {
     },
     method: 'PUT', 
     mode: 'cors',
-    body: JSON.stringify(post)
+    body: JSON.stringify(comment)
   });
 }
-
-
 
