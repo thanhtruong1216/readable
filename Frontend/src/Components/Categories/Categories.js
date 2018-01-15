@@ -7,8 +7,8 @@ class Categories extends Component {
 	render() {
 		const { categories } = this.props;
 		return(
-			<div>
-				{ categories.map((category, index) => <Category category={category} key={index}/>) }
+			<div className="categories">
+				{ categories.map((category, index) => <Category category={ category } key={index}/>) }
 			</div>
 		);
 	}
@@ -21,14 +21,12 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-  }
+  return {}
 }
 
-// Categories.proptypes = {
-//  name: Proptypes.array.isRequire,
-//  path: Proptypes.string.isRequire
-// }
+Categories.proptypes = {
+ categories: Proptypes.array.isRequired
+}
 export default connect(
   mapStateToProps,
   mapDispatchToProps

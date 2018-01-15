@@ -1,38 +1,48 @@
 import React, { Component } from 'react';
-import './App.css';
-import Categories from './Components/Categories';
-import Posts from './Components/Posts';
+import { connect } from 'react-redux';
 import * as PostsAPI from './APIS/PostsAPI';
 import * as CategoriesAPI from './APIS/CategoriesAPI';
-import { fetchPost } from  './actions';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { fetchCategories, fetchComments } from './actions';
-import CreatePost from './Components/CreatePost';
+import { fetchPosts, fetchCategoryPosts } from  './actions/PostActions';
+import { fetchCategoriesExisting } from './actions/CategoryActions';
+import Categories from './Components/Categories/Categories';
+import './App.css';
+import CreatePost from './Components/Posts/CreatePost';
 
 class App extends Component {
   componentDidMount() {
-    const { fetchCategoriesHandler, fetchPostHandler, fetchCommentsHandler } = this.props;
+    const { fetchCategoryPostsHandler, fetchPostHandler, fetchCategoriesExistingHandler } = this.props;
 
-    PostsAPI.getAll().then(response => response.json()).then(posts => {
-      fetchPostHandler(posts);
-    })
+    PostsAPI.getAll()
+      .then(response => response.json())
+      .then(posts => {
+        fetchPostHandler(posts);
+      });
 
-    CategoriesAPI.getAllCategories().then(response => response.json()).then(json => {
-      fetchCategoriesHandler(json.categories);
-    })
+    CategoriesAPI.getAllCategories()
+      .then(response => response.json())
+      .then(json => {
+        fetchCategoriesExistingHandler(json.categories);
+      });
+
+    CategoriesAPI.getCategoryPosts()
+      .then(response => response.json())
+      .then(posts => {
+        fetchCategoryPostsHandler(posts);
+      });
   }
+
   render() {
     return (
       <div className="App">
-        <h1>Readable App</h1>
-        <CreatePost/>
-        <Categories/>
+        <h1>READABLE APP</h1>
+        <div>
+          <CreatePost />
+          <Categories/>
+        </div>
       </div>
     );
   }
 }
-
 
 const mapStateToProps = state => {
   return {}
@@ -41,16 +51,19 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchPostHandler: (posts) => {
-      dispatch(fetchPost({ posts }));
+      dispatch(fetchPosts({ posts }));
     },
-    fetchCategoriesHandler: (categories) => {
-      dispatch(fetchCategories({ categories }));
+    fetchCategoriesExistingHandler: (categories) => {
+      dispatch(fetchCategoriesExisting({ categories }))
+    },
+    fetchCategoryPostsHandler: (posts) => {
+      dispatch(fetchCategoryPosts({ posts }));
     }
   }
 }
-// App.propTypes = {
-//   store: PropTypes.object.isRequired,
-// }
+
+App.propTypes = {}
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps

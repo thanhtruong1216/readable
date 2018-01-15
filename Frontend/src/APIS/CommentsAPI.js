@@ -1,4 +1,4 @@
-const api = "http://local.dev:3001";
+const api = "http://dev.localhost:3001";
 let token = 'sometoken';
 
 export const getAllComments = (post) => {
@@ -48,4 +48,47 @@ export const editComment = (comment) => {
     body: JSON.stringify(comment)
   });
 }
+
+export const voteUp = (comment) => {
+  return fetch(`${api}/comments/${comment.id}`, { 
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': token
+    },
+    method: 'POST', 
+    mode: 'cors',
+    body: JSON.stringify({
+      option: "upVote"
+    })
+  });
+}
+
+export const voteDown = (comment) => {
+  return fetch(`${api}/comments/${comment.id}`, { 
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': token
+    },
+    method: 'POST', 
+    mode: 'cors',
+    body: JSON.stringify({
+      option: "downVote"
+    })
+  });
+}
+
+export const getDetailComment = (comment) => {
+  return fetch(`${api}/comments/${comment.id}`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': token
+    },
+    mode: 'cors',
+    method: 'GET'
+  })
+}
+
 

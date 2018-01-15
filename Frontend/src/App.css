@@ -1,18 +1,12 @@
+* {
+  box-sizing: border-box;
+}
 .App {
-  padding: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: 'Comic Sans MS';
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
 
 .App-title {
   font-size: 1.5em;
@@ -27,6 +21,247 @@
   to { transform: rotate(360deg); }
 }
 
-h3 {
+a:active {
+  display: inline-block;
   color: brown;
 }
+label {
+  display: inline-block;
+  width: 150px;
+}
+
+select {
+  width: 100px;
+}
+
+button {
+  display: inline-block;
+  border: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #215D69;
+  margin: 10px 10px 10px 0;
+  font-family: 'Comic Sans MS';
+  font-weight: bold;
+  font-size: 13px;
+  background-color: transparent;
+  width: 100px;
+  text-align: center;
+}
+
+button:focus {
+  outline: none;
+  background-color: khaki;
+}
+
+.btn {
+  width: 150px;
+}
+img {
+  height: 17px;
+  width: 31px;
+  padding-left: 10px;
+  margin-top: 10px;
+}
+
+h1, h2 {
+  text-align: center;
+  color: white;
+  background-color: mediumseagreen;
+  line-height: 50px;
+}
+
+h3, h4 {
+  text-transform: uppercase;
+  padding-top: 10px;
+  margin: 0;
+  line-height: 40px;
+}
+
+.form-container {
+  width: 600px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: lightblue;
+  margin: 20px;
+}
+
+form {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: powderblue;
+  padding: 20px;
+  border-radius: 10px;
+  width: 420px;
+  font-family: 'Comic Sans MS';
+}
+
+.link {
+  color: #215D69;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+  width: 100px;
+}
+
+input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  width: 400px;
+  margin-bottom: 10px;
+  font-family: 'Comic Sans MS';
+} 
+
+textarea {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  height: 50px;
+  width: 400px;
+  font-family: 'Comic Sans MS';
+}
+
+input, textarea:focus {
+  outline: none;
+}
+
+/* Category style */
+.category-page-container {
+  font-family: 'Comic Sans MS'
+}
+.category-link, .category-name {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  line-height: 50px;
+  color: white;
+  background-color: mediumseagreen;
+  font-size: 16px;
+}
+
+/* Post style */
+.post-detail-container {
+  width: 100%;
+}
+.post-detail-header {
+  text-align: center;
+  color: white;
+  background-color: mediumseagreen;
+  line-height: 50px;
+  margin-bottom: 10px;
+}
+.post-detail-content {
+  padding: 20px;
+}
+.create-post-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post-container {
+  width: 100%;
+  background-color: #F2F2F2;
+  padding-left: 20px;
+  margin-bottom: 30px;
+}
+.group {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  vertical-align: middle;
+  border-bottom: 2px solid khaki;
+  padding-top: 20px;
+}
+.title {
+  display: flex;
+  align-items: center;
+  width: 60%;
+  padding-right: 20px;
+}
+.actions {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+.content {
+  padding-top: 20px;
+}
+.vote-score {
+  padding-right: 30px;
+}
+.vote-score-result {
+  text-align: center;
+}
+.create-post-header {
+  text-align: center;
+  line-height: 50px;
+}
+.btn-add-post {
+  border: none;
+  background-color: transparent;
+}
+.btn-add-post:focus {
+  background-color: transparent;
+}
+
+.btn-submit-post, .btn-save-edit-post, .btn-cancel-edit-post {
+  text-align: left;
+}
+/* Comment style */
+.comment-detail-container {
+  width: 100%;
+}
+.comment-detail-header {
+  text-align: center;
+  color: white;
+  background-color: mediumseagreen;
+  line-height: 50px;
+  margin-bottom: 10px;
+}
+.comment-detail-content {
+  padding: 20px;
+}
+.comment-container {
+  width: 100%;
+  display: flex;
+}
+.comment-container .link {
+  padding-right: 50px;
+}
+.container {
+  width: 100%;
+  align-items: center;
+ 
+  border-left: 2px solid khaki;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+.comment-content {
+  display: flex;
+  width: 60%;
+  margin-right: 40px;
+}
+.comment-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.show-comment-button {
+  width: 200px;
+}
+
+
+
