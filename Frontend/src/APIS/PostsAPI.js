@@ -38,7 +38,6 @@ export const createPost = (post) => {
   });
 }
   
-
 export const removePost = (post) => {
   return fetch(`${api}/posts/${post.id}`, { 
     headers: {
@@ -51,7 +50,7 @@ export const removePost = (post) => {
   });
 }
 
-export const editPost = ({id, title, body}) => {
+export const editPost = ({id, title, body, category}) => {
   return fetch(`${api}/posts/${id}`, { 
     headers: {
       'Accept': 'application/json',
@@ -60,7 +59,7 @@ export const editPost = ({id, title, body}) => {
     },
     method: 'PUT', 
     mode: 'cors',
-    body: JSON.stringify({title, body})
+    body: JSON.stringify({title, body, category})
   });
 }
 

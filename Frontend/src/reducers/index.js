@@ -4,6 +4,7 @@ import { categories } from './CategoryReducers';
 import { posts } from './PostReducers';
 import { comments } from './CommentReducers';
 import { post } from './PostDetailReducer';
+import { postEdittings } from './PostEditingReducers';
 import { sortPost } from './SortPostReducers';
 import { comment } from './CommentDetailReducer';
-export default combineReducers({ comments, posts, categories, routing, post, comment, sortPost });
+export default combineReducers({ comments, posts, categories, routing, post, comment, sortPost, postEdittings });

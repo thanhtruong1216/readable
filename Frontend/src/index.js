@@ -11,25 +11,29 @@ import { Provider } from 'react-redux';
 import reducers from './reducers';
 import { Route } from 'react-router-dom';
 import PostDetail from './Components/Posts/PostDetail';
+import PageNotFound from './Components/Posts/PageNotFound';
 import CommentDetail from './Components/Comments/CommentDetail';
 import CategoryPage from './Components/Categories/CategoryPage';
+import { routerMiddleware } from 'react-router-redux';
 
 const history = createHistory()
+const middleware = routerMiddleware(history)
 const store = createStore(
   reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  applyMiddleware(middleware)
 )
 
 
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div>
+      <div className="container">
        <Route exact path="/" component={App} />
        <Route path="/categories/:category" component={CategoryPage} /> 
        <Route path="/category/:category/:id" component={PostDetail}/> 
        <Route path="/comment/:id" component={CommentDetail}/>
-
+       <Route path="/pagenotfound" component={PageNotFound}/>
       </div>
     </ConnectedRouter>
   </Provider>,

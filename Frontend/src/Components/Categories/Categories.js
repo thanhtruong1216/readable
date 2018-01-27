@@ -20,14 +20,9 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {}
-}
-
 Categories.proptypes = {
  categories: Proptypes.array.isRequired
 }
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(Categories);

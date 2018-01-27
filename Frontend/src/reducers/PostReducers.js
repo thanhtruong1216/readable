@@ -10,7 +10,7 @@ export const posts = ( state = [], action ) => {
     case Actions.DELETE_POST:
       return state.filter((p) => p.id !== object.id);
     case Actions.EDIT_POST:
-      return state.map(post => post.id === object.id ? object : post);
+      return state.map(post => post.id === object.id ? object : post);      
     case Actions.FETCH_CATEGORY_POSTS:
       return [...state, ...posts];
     case Actions.VOTE_UP_POST:

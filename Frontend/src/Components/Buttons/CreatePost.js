@@ -30,11 +30,13 @@ class CreatePost extends Component {
     }
     PostAPI.createPost(post)
       .then(response => response.json())
-      .then(json => {addNewPost(post)});
-      this.form.reset()
-      this.setState({
-        openCreatePostForm: !this.state.openCreatePostForm
-      })
+      .then(json => {
+        addNewPost(post)
+        this.form.reset()
+        this.setState({
+          openCreatePostForm: !this.state.openCreatePostForm
+        });
+      });
   }
   cancelCreatePost = (e) => {
     e.preventDefault()
@@ -75,7 +77,7 @@ class CreatePost extends Component {
     
     return(
       <div className="create-post-container">
-        <button className="btn btn-add-post" onClick={ this.toggleCreatePostForm }>{addPostButtonText}</button>
+        <button className="btn btn-add-post" onClick={this.toggleCreatePostForm}>{addPostButtonText}</button>
         <div>{ createPostForm }</div>
       </div>
     );

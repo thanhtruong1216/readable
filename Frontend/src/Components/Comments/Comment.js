@@ -27,15 +27,19 @@ class Comment extends Component {
     const { comment, saveEditCommentHandler } = this.props;
     const newComment = {
       ...comment,
-      author: this.author.value,
-      body: this.body.value
+      body: this.body.value,
+      voteScore: 0,
     }
      CommentsAPI.editComment(newComment).then((response) => {
       saveEditCommentHandler(newComment);
       this.setState(({openEditCommentForm}) => ({openEditCommentForm: !openEditCommentForm}));
     })
   }
-  
+  cancelComment = () => {
+    this.setState({
+      openEditCommentForm: false
+    })
+  }
   voteUpComment = (event) => {
     const { voteUpCommentHandler, comment } = this.props;
     CommentsAPI.voteUp(comment).then((response) => { voteUpCommentHandler(comment)})
@@ -48,7 +52,6 @@ class Comment extends Component {
 
   render() {
     const { comment } = this.props;
-    const commentId = `/comment/${comment.id}`
     const commentDetailLink = `/comment/${comment.id}`
     if(!this.state.openEditCommentForm) {
       return(
@@ -71,25 +74,24 @@ class Comment extends Component {
           </div>
           <div>
             <Link className="link" to={commentDetailLink}>detail</Link>
-            <button onClick={ this.deleteComment }>Delete</button>
-            <button onClick={ this.editComment }>Edit</button>
+            <button className="btn" onClick={ this.deleteComment }>Delete</button>
+            <button className="btn" onClick={ this.editComment }>Edit</button>
           </div>
         </div>
       );
     } else {
       return(
-        <form onSubmit={ this.saveEditComment }>
-          <input name="author" defaultValue={ comment.author } ref={ (input) => this.author = input } />
+        <div>
           <textarea name="body" defaultValue={ comment.body } ref={ (textarea) => this.body = textarea }>
           </textarea>
-          <button>Save</button>
-        </form>
+          <div className="buttons-flex">
+            <button onClick={this.saveEditComment}>save</button>
+            <button onClick={this.cancelComment}>cancel</button>
+          </div>
+        </div>
       );
     }  
   }
-}
-const mapStateToProps = state => {
-  return {}
 }
 
 const mapDispatchToProps = dispatch => {
@@ -114,6 +116,6 @@ Comment.proptypes = {
 }
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(Comment);

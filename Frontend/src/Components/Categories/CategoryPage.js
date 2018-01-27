@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Posts from '../Posts/Posts';
-import { Link } from 'react-router-dom';
+import CreatePost from '../Buttons/CreatePost';
+import BasicTabs from './CategoryTab';
 
 class CategoryPage extends Component {
   render() {
@@ -10,11 +11,10 @@ class CategoryPage extends Component {
     const categoryPosts = posts.filter((post) => post.category === category )
     return(
       <div className="category-page-container">
-        {/*<Link to='/'>
-          <img src="http://www.freepngimg.com/download/arrow/1-2-arrow-png-image.png" alt="arrow"/>
-        </Link>*/}
+        <BasicTabs/>
         <h3 className="category-name">{ match.params.category } category</h3>
         <Posts posts={categoryPosts}/>
+        <CreatePost />
       </div>
     );
   }
@@ -25,12 +25,7 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {}
-}
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(CategoryPage);
 

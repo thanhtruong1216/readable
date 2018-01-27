@@ -3,6 +3,7 @@ export const FETCH_CATEGORY_POSTS = 'FETCH_CATEGORY_POSTS';
 export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const EDIT_POST = 'EDIT_POST'
+export const TOGGLE_EDIT_POST = 'TOGGLE_EDIT_POST'
 export const FETCH_DETAILS_POST = 'FETCH_DETAILS_POST';
 export const VOTE_UP_POST = 'VOTE_UP_POST';
 export const VOTE_DOWN_POST = 'VOTE_DOWN_POST';
@@ -35,10 +36,17 @@ export function deletePost({ id }) {
   }
 }
 
-export function editPost(post) {
+export function editPost({post}) {
   return {
     type: EDIT_POST,
     ...post
+  }
+}
+
+export function toggleEditPost({post}) {
+  return {
+    type: TOGGLE_EDIT_POST,
+    post
   }
 }
 

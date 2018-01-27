@@ -57,15 +57,11 @@ class Category extends PureComponent {
 		return(
 			<div className="category-container">
 				<Link className="link category-link" to={categoryLink}>{category.name} CATEGORY</Link>
-        <div>
-          <label>Sort by score</label>
-          <button onClick={this.increaseSort}>Increasing</button>
-          <button onClick={this.decreaseSort}>Decreasing</button>
-        </div>
-        <div>
-          <label>Sort by time stamp</label>
-          <button onClick={this.soonSort}>Soon</button>
-          <button onClick={this.lateSort}>Late</button>
+        <div className="sort-buttons">
+          <button className="sort" onClick={this.increaseSort}>Least voted first</button>
+          <button className="sort" onClick={this.decreaseSort}>Most voted first</button>
+          <button onClick={this.soonSort}>New first</button>
+          <button onClick={this.lateSort}>Old first</button>
         </div>
 				<Posts posts={posts} />
 			</div>
@@ -102,6 +98,8 @@ const mapStateToProps = (state, ownProps) => {
             return b.timestamp - a.timestamp;
           });
         }
+        break;
+      default:
         break;
     }
   }
