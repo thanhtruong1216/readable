@@ -6,6 +6,7 @@
     "axios": "^0.17.1",
     "form-serialize": "^0.7.2",
     "history": "^4.7.2",
+    "material-ui": "^1.0.0-beta.30",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-input": "^4.1.3",
