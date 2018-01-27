@@ -2,11 +2,19 @@
   box-sizing: border-box;
 }
 .App {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 0 70px;
   font-family: 'Comic Sans MS';
+  width: 100%;
+  height: 100%;
 }
-
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .App-title {
   font-size: 1.5em;
@@ -41,12 +49,11 @@ button {
   text-transform: uppercase;
   font-weight: bold;
   color: #215D69;
-  margin: 10px 10px 10px 0;
+  margin: 10px 10px 10px 20px;
   font-family: 'Comic Sans MS';
   font-weight: bold;
   font-size: 13px;
   background-color: transparent;
-  width: 100px;
   text-align: center;
 }
 
@@ -55,14 +62,9 @@ button:focus {
   background-color: khaki;
 }
 
-.btn {
-  width: 150px;
-}
 img {
   height: 17px;
   width: 31px;
-  padding-left: 10px;
-  margin-top: 10px;
 }
 
 h1, h2 {
@@ -79,6 +81,10 @@ h3, h4 {
   line-height: 40px;
 }
 
+.buttons-flex {
+  display: flex;
+}
+
 .form-container {
   width: 600px;
   border-radius: 5px;
@@ -89,6 +95,7 @@ h3, h4 {
   padding: 20px;
   background-color: lightblue;
   margin: 20px;
+  z-index: 9999;
 }
 
 form {
@@ -109,7 +116,7 @@ form {
   text-decoration: none;
   font-size: 13px;
   font-weight: bold;
-  width: 100px;
+  display: inline-block;
 }
 
 input {
@@ -137,7 +144,9 @@ input, textarea:focus {
 
 /* Category style */
 .category-page-container {
-  font-family: 'Comic Sans MS'
+  font-family: 'Comic Sans MS';
+  width: 100%;
+  padding-right: 10px;
 }
 .category-link, .category-name {
   display: inline-block;
@@ -147,11 +156,19 @@ input, textarea:focus {
   color: white;
   background-color: mediumseagreen;
   font-size: 16px;
+  margin-top: 20px;
 }
 
 /* Post style */
 .post-detail-container {
   width: 100%;
+}
+.main-content {
+  display: flex;
+}
+.post-actions-container {
+  display: flex;
+  border-bottom: 1px solid khaki;
 }
 .post-detail-header {
   text-align: center;
@@ -159,16 +176,23 @@ input, textarea:focus {
   background-color: mediumseagreen;
   line-height: 50px;
   margin-bottom: 10px;
+  margin-top: 20px;
 }
 .post-detail-content {
+  display: flex;
   padding: 20px;
 }
-.create-post-container {
-  display: flex;
-  flex-direction: column;
+.post-actions {
+  flex-wrap: nowrap;
   align-items: center;
+  padding-left: 20px;
 }
-
+.post-detail-actions {
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-top: 30px;
+  padding: 0;
+}
 .post-container {
   width: 100%;
   background-color: #F2F2F2;
@@ -181,7 +205,6 @@ input, textarea:focus {
   align-items: center;
   justify-content: space-between;
   vertical-align: middle;
-  border-bottom: 2px solid khaki;
   padding-top: 20px;
 }
 .title {
@@ -208,9 +231,28 @@ input, textarea:focus {
   text-align: center;
   line-height: 50px;
 }
+.create-post-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
 .btn-add-post {
-  border: none;
-  background-color: transparent;
+  display: block;
+  position: fixed;
+  right: 8px;
+  top: 550px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-image: url('./icons/add.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  background-color: brown;
+  font-size: 0;
+  color: white;
 }
 .btn-add-post:focus {
   background-color: transparent;
@@ -219,6 +261,17 @@ input, textarea:focus {
 .btn-submit-post, .btn-save-edit-post, .btn-cancel-edit-post {
   text-align: left;
 }
+
+.post-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+.post-main-contents {
+  line-height: 30px;
+}
+/*.post-actions {
+  padding-left: 20px;
+}*/
 /* Comment style */
 .comment-detail-container {
   width: 100%;
@@ -237,16 +290,14 @@ input, textarea:focus {
   width: 100%;
   display: flex;
 }
+
 .comment-container .link {
   padding-right: 50px;
 }
+
 .container {
   width: 100%;
   align-items: center;
- 
-  border-left: 2px solid khaki;
-  padding-top: 20px;
-  padding-left: 20px;
 }
 .comment-content {
   display: flex;
@@ -261,7 +312,66 @@ input, textarea:focus {
 }
 .show-comment-button {
   width: 200px;
+  text-align: left;
 }
 
+.add-show-comment-container {
+  display: flex;
+}
 
+.main-comments {
+  margin-bottom: 30px;
 
+}
+
+.main-content {
+  width: 100%;
+}
+
+.comment-main-content {
+  width: 60%;
+}
+
+.comment-actions {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.comments {
+  margin-top: 10px;
+  border-left: 1px solid khaki;
+}
+
+.comments-container {
+  border-left: 2px solid khaki;
+}
+/*Page not found*/
+.page-not-found-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.not-found-page-content {
+  width: 700px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.category-name {
+  margin-top: 20px;
+}
+
+.sort-buttons {
+  line-height: 60px;
+}
+.sort {
+  width: 170px;
+}

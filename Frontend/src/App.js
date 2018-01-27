@@ -6,7 +6,8 @@ import { fetchPosts, fetchCategoryPosts } from  './actions/PostActions';
 import { fetchCategoriesExisting } from './actions/CategoryActions';
 import Categories from './Components/Categories/Categories';
 import './App.css';
-import CreatePost from './Components/Posts/CreatePost';
+import CreatePost from './Components/Buttons/CreatePost';
+import BasicTabs from './Components/Categories/CategoryTab';
 
 class App extends Component {
   componentDidMount() {
@@ -36,6 +37,7 @@ class App extends Component {
       <div className="App">
         <h1>READABLE APP</h1>
         <div>
+          <BasicTabs />
           <CreatePost />
           <Categories/>
         </div>
