@@ -24,6 +24,28 @@ const defaultData = {
     voteScore: -5,
     deleted: false,
     commentCount: 0
+  },
+  "1xf0y6ziyjabvozdd253nd": {
+    id: '1xf0y6ziyjabvozdd253nd',
+    timestamp: 0467166872633,
+    title: 'Learn React in 30 minutes',
+    body: 'Haha, perfect.',
+    author: 'Julia Robert',
+    category: 'react',
+    voteScore: 4,
+    deleted: false,
+    commentCount: 0
+  },
+  "2ni6ok3ym7mf1p33lnez": {
+    id: '2ni6ok3ym7mf1p33lnez',
+    timestamp: 0468479767195,
+    title: 'Learn Redux now!',
+    body: 'It takes more than 10 minutes to learn technology.',
+    author: 'Queen',
+    category: 'redux',
+    voteScore: 2,
+    deleted: false,
+    commentCount: 0
   }
 }
 
