@@ -59,7 +59,6 @@ button {
 
 button:focus {
   outline: none;
-  background-color: khaki;
 }
 
 img {

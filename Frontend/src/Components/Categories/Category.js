@@ -19,49 +19,48 @@ class Category extends PureComponent {
     this.setState({posts});
   }
 
-  increaseSort = (e) => {
+  voteScoreSort = (e) => {
     e.preventDefault();
+    const { asc } = this.props;
     this.props.sortPostHandler({
       sortField: 'voteScore',
-      asc: true,
+      asc: !asc,
     })
   }
 
-  decreaseSort = (e) => {
+  timestampSort = (e) => {
     e.preventDefault();
+    const { asc } = this.props;
     this.props.sortPostHandler({
-      sortField: 'voteScore',
-      asc: false,
+      sortField: 'timestamp',
+      asc: !asc,
     })
   }
 
-  soonSort = (e) => {
-    e.preventDefault()
-    this.props.sortPostHandler({
-      sortField: 'timestamp',
-      asc: false,
-    })
-  }
-
-  lateSort = (e) => {
-    e.preventDefault()
-    this.props.sortPostHandler({
-      sortField: 'timestamp',
-      asc: true,
-    })
-  }
   render() {
-    const { category } = this.props;
+    const { category, sortField, asc } = this.props;
     const { posts } = this.props;
     const categoryLink = `/categories/${ category.name }`;
+    let voteScoreIndicator = '';
+
+    if(sortField === 'voteScore') {
+      voteScoreIndicator = asc ? '↑' : '↓';
+    }
+
+    let timestampIndicator = '';
+    if(sortField === 'timestamp') {
+      timestampIndicator = asc ? '↑' : '↓';
+    }
+
+    let voteScoreSortEl = <button className="sort" onClick={this.voteScoreSort}>Sort by votes{voteScoreIndicator}</button>;
+    let timestampSortEl = <button className="sort" onClick={this.timestampSort}>Sort by time{timestampIndicator}</button>;
+
 		return(
 			<div className="category-container">
 				<Link className="link category-link" to={categoryLink}>{category.name} CATEGORY</Link>
         <div className="sort-buttons">
-          <button className="sort" onClick={this.increaseSort}>Least voted first</button>
-          <button className="sort" onClick={this.decreaseSort}>Most voted first</button>
-          <button onClick={this.soonSort}>New first</button>
-          <button onClick={this.lateSort}>Old first</button>
+          {voteScoreSortEl}
+          {timestampSortEl}
         </div>
 				<Posts posts={posts} />
 			</div>
