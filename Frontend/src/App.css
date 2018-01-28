@@ -168,6 +168,7 @@ input, textarea:focus {
 .post-actions-container {
   display: flex;
   border-bottom: 1px solid khaki;
+  padding: 0 20px;
 }
 .post-detail-header {
   text-align: center;
